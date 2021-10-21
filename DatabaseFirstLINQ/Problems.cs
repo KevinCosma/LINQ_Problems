@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DatabaseFirstLINQ.Models;
+using System.Collections.Generic;
 
 namespace DatabaseFirstLINQ
 {
@@ -16,7 +17,7 @@ namespace DatabaseFirstLINQ
         public void RunLINQQueries()
         {
             //ProblemOne();
-            //ProblemTwo();
+            ProblemTwo();
             //ProblemThree();
             //ProblemFour();
             //ProblemFive();
@@ -38,12 +39,16 @@ namespace DatabaseFirstLINQ
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
-        private void ProblemOne()
-        {
-            // Write a LINQ query that returns the number of users in the Users table.
-            // HINT: .ToList().Count
+        //public void ProblemOne()
+        //{
+        //    // Write a LINQ query that returns the number of users in the Users table.
+        //    // HINT: .ToList().Count
+        //    var users = _context.Users.ToList().Count;
 
-        }
+             
+        //    Console.WriteLine(users);
+            
+        //}
 
         private void ProblemTwo()
         {
