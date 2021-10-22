@@ -24,8 +24,8 @@ namespace DatabaseFirstLINQ
             //ProblemSix();
             //ProblemSeven();
             //ProblemEight();
-            ProblemNine();
-            //ProblemTen();
+            //ProblemNine();
+            ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -168,32 +168,54 @@ namespace DatabaseFirstLINQ
             .Select(sc => sc.Product.Price)
             .Sum();
             Console.WriteLine($"Price: {totalSum}");
-
-            //private void ProblemTen()
-            //{
+        }
+        private void ProblemTen()
+            {
                 //            Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
                 //             Then print the user's email as well as the product's name, price, and quantity to the console.
+                var employeeCarts = _context.ShoppingCarts
+                                               .Include(sc => sc.Product)
+                                               .Include(sc => sc.User)
+                                               .Select(sc => new {sc.User, sc.Product, sc.Quantity} )
+                                               .ToList();
 
-            //}
+                var customerUsers = _context.UserRoles
+                                            .Include(ur => ur.Role)
+                                            .Include(ur => ur.User)
+                                            .Where(ur => ur.Role.RoleName == "Employee")
+                                            .Select(ur => ur.User)
+                                            .ToList();
 
-            //         <><><><><><><><> CUD(Create, Update, Delete) Actions<><><><><><><><><>
+                foreach (var record in employeeCarts)
+                {
+                    if (customerUsers.Contains(record.User))
+                    {
+                        Console.WriteLine($"{record.User.Email} Product {record.Product.Name} Quantity {record.Quantity} Price {record.Product.Price}");
+                    }
+                }
 
-            //         <><> C Actions(Create) <><>
 
-            //private void ProblemEleven()
-            //{
+
+                //}
+
+                //         <><><><><><><><> CUD(Create, Update, Delete) Actions<><><><><><><><><>
+
+                //         <><> C Actions(Create) <><>
+
+                //private void ProblemEleven()
+                //{
                 //            Create a new User object and add that user to the Users table using LINQ.
                 //User newUser = new User()
-            //    {
-            //        Email = "david@gmail.com",
-            //        Password = "DavidsPass123"
-            //    };
-            //    _context.Users.Add(newUser);
-            //    _context.SaveChanges();
-            //}
+                //    {
+                //        Email = "david@gmail.com",
+                //        Password = "DavidsPass123"
+                //    };
+                //    _context.Users.Add(newUser);
+                //    _context.SaveChanges();
+                //}
 
-            //private void ProblemTwelve()
-            //{
+                //private void ProblemTwelve()
+                //{
                 //            Create a new Product object and add that product to the Products table using LINQ.
 
                 //        }
