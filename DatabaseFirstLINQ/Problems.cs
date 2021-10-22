@@ -18,8 +18,8 @@ namespace DatabaseFirstLINQ
         {
             //ProblemOne();
             //ProblemTwo();
-            ProblemThree();
-            //ProblemFour();
+            //ProblemThree();
+            ProblemFour();
             //ProblemFive();
             //ProblemSix();
             //ProblemSeven();
@@ -71,14 +71,9 @@ namespace DatabaseFirstLINQ
             {
                 if (product.Price > 150)
                 {
-                    Console.WriteLine(product.Price);
+                    Console.WriteLine(product.Name, product.Price);
                 }
             }
-
-
-            //List<Product> products = new Product();
-            //List<Product> ProductOverOneFifty = products.FindAll(p => p.Price > 150);
-            //foreach(var product in ProductOverOneFifty) { Console.WriteLine(product.Price)};
 
 
 
@@ -88,14 +83,21 @@ namespace DatabaseFirstLINQ
         {
             //Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
+            var products = _context.Products;
 
+            foreach (Product product in products)
+            {
+                if (product.Name.Contains("s"))
+                    Console.WriteLine(product.Name);
+            }
         }
 
         private void ProblemFive()
         {
             //Write a LINQ query that gets all of the users who registered BEFORE 2016
-            // Then print each user's email and registration date to the console.
+            // Then print each user's email and registration date to the console
 
+           
         }
 
 //        private void ProblemSix()
